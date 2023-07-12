@@ -1,10 +1,7 @@
-
 function App() {
-  return (
-  <div className='container mx-auto'>
-    <div className='text-3xl'>test</div>
-  </div>
-  );
+    return (
+        <>daisyUI</>
+    );
 }
 
 export default App;
