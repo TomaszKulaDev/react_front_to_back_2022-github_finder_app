@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import Spinner from "../layout/Spinner";
+import UserItem from "./UserItem";
 
 const UserResults = () => {
 
@@ -13,25 +14,21 @@ const UserResults = () => {
 
     const fetchUsers = async () => {
         const response = await fetch(`${process.env.REACT_APP_GITHUB_URL}/users`, {
-            headers: {
-                Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
-            }
+            // headers: {
+            //     Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
+            // }
         })
         const data = await response.json()
         setUsers(data)
         setLoading(false)
+        console.log(data)
 
     }
 
     if (!loading) {
         return (
             <div className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2'>
-                {users.map((user) => {
-                    const {id, login} = user
-                    return (
-                        <div key={id}>{login}</div>
-                    )
-                })}
+                {users.map((user) => (<UserItem key={user.id} user={user}/>))}
             </div>
         );
     } else {
