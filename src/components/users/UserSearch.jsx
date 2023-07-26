@@ -5,8 +5,7 @@ const UserSearch = () => {
 
     const [text, setText] = useState('');
 
-
-    const {users, searchUsers} = useContext(githubContext);
+    const {users, searchUsers, clearUsers} = useContext(githubContext);
 
     const handleChange = (e) => setText(e.target.value)
 
@@ -19,6 +18,10 @@ const UserSearch = () => {
 
             setText('')
         }
+    }
+
+    const handleClean =()=>{
+        clearUsers()
     }
 
     return (
@@ -46,7 +49,7 @@ const UserSearch = () => {
             {
                 users.length > 0 && (
                     <div>
-                        <button className='btn btn-ghost btn-lg'>Clear</button>
+                        <button onClick={handleClean} className='btn btn-ghost btn-lg'>Clear</button>
                     </div>
                 )
             }

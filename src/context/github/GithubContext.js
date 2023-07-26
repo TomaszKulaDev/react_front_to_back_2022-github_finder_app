@@ -27,22 +27,31 @@ export const GithubProvider = ({children}) => {
             //     Authorization: `token ${GITHUB_TOKEN}`
             // }
         })
+
         const {items} = await response.json()
 
         dispatch({
             type: 'GET_USERS',
             payload: items,
         })
+
     }
+
+    const clearUsers = () => dispatch({type: 'CLEAR_USERS'})
+
     // Set loading
     const setLoading = () => dispatch({type: 'SET_LOADING'})
+
+
+
 
 
     return <GithubContext.Provider
         value={{
             users: state.users,
             loading: state.loading,
-            searchUsers
+            searchUsers,
+            clearUsers
         }}>
 
         {children}
